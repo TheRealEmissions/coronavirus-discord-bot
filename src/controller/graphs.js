@@ -112,6 +112,12 @@ function init(head, client) {
                      86400000 ||
                   db.url == "none"
                ) {
+                  head.modules.plotly.deletePlot(
+                     `${new Date(db.update_timestamp).getTime()}-${region}`,
+                     (err, plot) => {
+                        if (err) return head.error(err);
+                     }
+                  );
                   const url = await generateGraph(head, region);
                   db.url = url;
                   db.update_timestamp = new Date();
@@ -141,85 +147,89 @@ function initOther(head, client) {
                86400000
             )
                return;
-            if (db.other_url == "none") {
-               let xaxis = [];
-               for (let c in head.covid.global.cases) xaxis.push(Number(c) + 1);
-               let graph = {
-                  data: [
-                     {
-                        x: xaxis,
-                        y: head.covid.global.cases,
-                        type: "bar",
-                        name: "Total Cases",
-                        xaxis: "x"
+            head.modules.plotly.deletePlot(
+               `${new Date(db.update_timestamp).getTime()}-globalother`,
+               (err, plot) => {
+                  if (err) return head.error(err);
+               }
+            );
+            let xaxis = [];
+            for (let c in head.covid.global.cases) xaxis.push(Number(c) + 1);
+            let graph = {
+               data: [
+                  {
+                     x: xaxis,
+                     y: head.covid.global.cases,
+                     type: "bar",
+                     name: "Total Cases",
+                     xaxis: "x"
+                  },
+                  {
+                     x: xaxis,
+                     y: head.covid.global.deaths,
+                     type: "bar",
+                     name: "Total Deaths",
+                     yaxis: "y2",
+                     xaxis: "x"
+                  },
+                  {
+                     x: xaxis,
+                     y: head.covid.global.recovered,
+                     type: "scatter",
+                     name: "Total Recovered",
+                     yaxis: "y3",
+                     xaxis: "x"
+                  }
+               ],
+               options: {
+                  filename: `${new Date().getTime()}-globalother`,
+                  fileopt: "overwrite",
+                  layout: {
+                     title: "COVID-19",
+                     xaxis: {
+                        title: "Days (arbitrary)"
                      },
-                     {
-                        x: xaxis,
-                        y: head.covid.global.deaths,
-                        type: "bar",
-                        name: "Total Deaths",
+                     yaxis: {
+                        title: "Total Cases",
+                        autorange: false,
+                        range: [0, 500000]
+                     },
+                     yaxis2: {
+                        title: "Total Deaths",
                         yaxis: "y2",
-                        xaxis: "x"
+                        side: "right",
+                        overlaying: "y",
+                        autorange: false,
+                        range: [0, 50000]
                      },
-                     {
-                        x: xaxis,
-                        y: head.covid.global.recovered,
-                        type: "scatter",
-                        name: "Total Recovered",
+                     yaxis3: {
+                        title: "Total Recoveries",
                         yaxis: "y3",
-                        xaxis: "x"
-                     }
-                  ],
-                  options: {
-                     filename: `${new Date().getTime()}-globalother`,
-                     fileopt: "overwrite",
-                     layout: {
-                        title: "COVID-19",
-                        xaxis: {
-                           title: "Days (arbitrary)"
-                        },
-                        yaxis: {
-                           title: "Total Cases",
-                           autorange: false,
-                           range: [0, 500000]
-                        },
-                        yaxis2: {
-                           title: "Total Deaths",
-                           yaxis: "y2",
-                           side: "right",
-                           overlaying: "y",
-                           autorange: false,
-                           range: [0, 50000]
-                        },
-                        yaxis3: {
-                           title: "Total Recoveries",
-                           yaxis: "y3",
-                           side: "left",
-                           anchor: "free",
-                           position: 0.15,
-                           overlaying: "y",
-                           autorange: false,
-                           range: [0, 500000]
-                        }
+                        side: "left",
+                        anchor: "free",
+                        position: 0.15,
+                        overlaying: "y",
+                        autorange: false,
+                        range: [0, 500000]
                      }
                   }
-               };
-               let graph_url = await new Promise((resolve, reject) => {
-                  head.modules.plotly.plot(
-                     graph.data,
-                     graph.options,
-                     (err, msg) => {
-                        if (err) return reject(err);
-                        else return resolve(msg);
-                     }
-                  );
-               });
-               db.other_url = graph_url.url;
-               db.save(err => {
-                  if (err) return reject(err);
-                  else return resolve();
-               });
-            } else return resolve();
+               }
+            };
+            let graph_url = await new Promise((resolve, reject) => {
+               head.modules.plotly.plot(
+                  graph.data,
+                  graph.options,
+                  (err, msg) => {
+                     if (err) return reject(err);
+                     else return resolve(msg);
+                  }
+               );
+            });
+            db.other_url = graph_url.url;
+            db.save(err => {
+               if (err) return reject(err);
+               else return resolve();
+            });
          }
       );
       return resolve();
