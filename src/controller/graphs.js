@@ -109,7 +109,8 @@ function init(head, client) {
                if (
                   new Date().getTime() -
                      new Date(db.update_timestamp).getTime() >=
-                  86400000
+                     86400000 ||
+                  db.url == "none"
                ) {
                   const url = await generateGraph(head, region);
                   db.url = url;
@@ -135,6 +136,11 @@ function initOther(head, client) {
          },
          async (err, db) => {
             if (err) return reject(err);
+            if (
+               new Date().getTime() - new Date(db.update_timestamp).getTime() <
+               86400000
+            )
+               return;
             if (db.other_url == "none") {
                let xaxis = [];
                for (let c in head.covid.global.cases) xaxis.push(Number(c) + 1);
