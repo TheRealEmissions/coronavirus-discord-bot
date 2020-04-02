@@ -1,0 +1,21 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Emissions#2565",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "github:discordjs/discord.js",
+    "djs-commands": "github:TheRealEmissions/djs-commands",
+    "fs": "0.0.1-security",
+    "himalaya": "^1.1.0",
+    "mongoose": "^5.9.4",
+    "plotly": "^1.0.6",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.8"
+  }
+}

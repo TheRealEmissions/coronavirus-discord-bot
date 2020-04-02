@@ -1,0 +1,17 @@
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+node_modules/
+*.jpg
+temp/
+src/data/auth.js
+.vscode/
+src/controller/priority/
+src/controller/.login.js
+index.js
+src/bot.js
