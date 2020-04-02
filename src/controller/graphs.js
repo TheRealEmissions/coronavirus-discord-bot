@@ -222,6 +222,7 @@ function initOther(head, client) {
             } else return resolve();
          }
       );
+      return resolve();
    });
 }
 
