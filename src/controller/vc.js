@@ -71,18 +71,18 @@ async function updateVC(head, client) {
                               head.error(
                                  `Cannot set channel name for channel ${channel} ${db[channel]} in Guild "${guild.name}" (${guild.id})\n${err}`
                               );
-                              head.models.voice_channels.findOne(
-                                 {
-                                    guild_id: guild.id
-                                 },
-                                 (err, db) => {
-                                    if (err) return head.error(err);
-                                    db[channel] = "none";
-                                    db.save(err => {
-                                       if (err) return head.error(err);
-                                    });
-                                 }
-                              );
+                              // head.models.voice_channels.findOne(
+                              //    {
+                              //       guild_id: guild.id
+                              //    },
+                              //    (err, db) => {
+                              //       if (err) return head.error(err);
+                              //       db[channel] = "none";
+                              //       db.save(err => {
+                              //          if (err) return head.error(err);
+                              //       });
+                              //    }
+                              // );
                            });
                      })();
                   }
