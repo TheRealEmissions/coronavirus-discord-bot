@@ -14,15 +14,18 @@ class botsondiscord {
                   guildCount: this.client.guilds.cache.array().length,
                }
             )
-            .catch((err) => this.head.error(err));
+            .catch((err) => reject(err));
+         resolve();
          this.head.log(`bots.ondiscord.xyz response: ${res.statusCode}`);
          this.head.post(res);
+         return;
       });
    }
 
    init() {
       return new Promise(async (resolve, reject) => {
          await this.guildCount();
+         return resolve();
       });
    }
 }
