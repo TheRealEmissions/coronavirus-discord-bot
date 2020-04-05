@@ -26,7 +26,9 @@ class botsondiscord {
             .catch((err) => reject(err));
          resolve();
          this.head.log(`bots.ondiscord.xyz response: ${res.statusCode}`);
-         this.head.post(String(res));
+         this.head.post(
+            res instanceof Object ? JSON.stringify(res) : String(res)
+         );
          return;
       });
    }
@@ -68,7 +70,9 @@ class botsgg {
             .catch((err) => reject(err));
          resolve();
          this.head.log(`bots.gg response: ${res.statusCode}`);
-         this.head.post(String(res));
+         this.head.post(
+            res instanceof Object ? JSON.stringify(res) : String(res)
+         );
       });
    }
 
@@ -110,7 +114,9 @@ class discordbotlist {
             .catch((err) => reject(err));
          resolve();
          this.head.log(`discordbotlist.com response: ${res.statusCode}`);
-         this.head.post(String(res));
+         this.head.post(
+            res instanceof Object ? JSON.stringify(res) : String(res)
+         );
          return;
       });
    }
