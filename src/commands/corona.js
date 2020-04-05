@@ -30,7 +30,7 @@ module.exports = class {
          }
          return resolve({
             growths: growths,
-            newcases: newcases
+            newcases: newcases,
          });
       });
    }
@@ -74,7 +74,7 @@ module.exports = class {
             embed: {
                color: message.guild.me.displayHexColor,
                title: "Coronavirus Information - Global",
-               description: `**⠀**\n📊 **Average Growth:** \`${growth.toFixed(
+               description: `**⠀**\nUpvote me: [HERE](https://discordbotlist.com/bots/691330203036811335) [HERE](https://bots.ondiscord.xyz/bots/691330203036811335) [HERE](https://divinediscordbots.com/bot/691330203036811335) [HERE](https://discord.bots.gg/bots/691330203036811335)\n**⠀**\n📊 **Average Growth:** \`${growth.toFixed(
                   2
                )}\` or \`${(growth * 100).toFixed(
                   2
@@ -91,31 +91,31 @@ module.exports = class {
                   {
                      name: "Day:",
                      value: "",
-                     inline: true
+                     inline: true,
                   },
                   {
                      name: "Prediction:",
                      value: "",
-                     inline: true
-                  }
+                     inline: true,
+                  },
                ],
                image: {
-                  url: `${graph_url}.png`
-               }
-            }
+                  url: `${graph_url}.png`,
+               },
+            },
          };
          for (const e in array) {
             embed.embed.fields.find(
-               x => x.name == "Day:"
+               (x) => x.name == "Day:"
             ).value = embed.embed.fields
-               .find(x => x.name == "Day:")
+               .find((x) => x.name == "Day:")
                .value.concat(
                   `${Number(e) + 1 == 1 ? `1 *(today)*` : Number(e) + 1}\n`
                );
             embed.embed.fields.find(
-               x => x.name == "Prediction:"
+               (x) => x.name == "Prediction:"
             ).value = embed.embed.fields
-               .find(x => x.name == "Prediction:")
+               .find((x) => x.name == "Prediction:")
                .value.concat(`${this.numberWithCommas(String(array[e]))}\n`);
          }
          message.channel.send(embed);
@@ -181,7 +181,9 @@ module.exports = class {
                      ? args[1].toUpperCase()
                      : args[1]
                           .split("-")
-                          .map(s => `${s.charAt(0).toUpperCase()}${s.slice(1)}`)
+                          .map(
+                             (s) => `${s.charAt(0).toUpperCase()}${s.slice(1)}`
+                          )
                           .join(` `)
                }`,
                description: `**⠀**\n📊 **Average Growth:** \`${growth.toFixed(
@@ -201,31 +203,31 @@ module.exports = class {
                   {
                      name: "Day:",
                      value: "",
-                     inline: true
+                     inline: true,
                   },
                   {
                      name: "Prediction:",
                      value: "",
-                     inline: true
-                  }
+                     inline: true,
+                  },
                ],
                image: {
-                  url: `${graph_url}.png`
-               }
-            }
+                  url: `${graph_url}.png`,
+               },
+            },
          };
          for (const e in array) {
             embed.embed.fields.find(
-               x => x.name == "Day:"
+               (x) => x.name == "Day:"
             ).value = embed.embed.fields
-               .find(x => x.name == "Day:")
+               .find((x) => x.name == "Day:")
                .value.concat(
                   `${Number(e) + 1 == 1 ? `1 *(today)*` : Number(e) + 1}\n`
                );
             embed.embed.fields.find(
-               x => x.name == "Prediction:"
+               (x) => x.name == "Prediction:"
             ).value = embed.embed.fields
-               .find(x => x.name == "Prediction:")
+               .find((x) => x.name == "Prediction:")
                .value.concat(`${this.numberWithCommas(String(array[e]))}\n`);
          }
          message.channel.send(embed);
