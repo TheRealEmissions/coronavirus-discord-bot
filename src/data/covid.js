@@ -1322,4 +1322,255 @@ module.exports = {
          y2: [0, 4],
       },
    },
+   sweden: {
+      cases: [
+         1,
+         1,
+         1,
+         1,
+         1,
+         1,
+         1,
+         1,
+         1,
+         1,
+         1,
+         2,
+         7,
+         11,
+         13,
+         14,
+         15,
+         30,
+         52,
+         94,
+         137,
+         161,
+         203,
+         260,
+         355,
+         500,
+         687,
+         814,
+         961,
+         1040,
+         1121,
+         1196,
+         1301,
+         1439,
+         1639,
+         1770,
+         1934,
+         2046,
+         2299,
+         2526,
+         2840,
+         3069,
+         3447,
+         3700,
+         4028,
+         4435,
+         4947,
+         5568,
+         6131,
+         6443,
+      ],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 1000],
+         y2: [0, 5],
+      },
+   },
+   russia: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   ireland: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   "czech-republic": {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   chile: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   denmark: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   poland: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   romania: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   india: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   malaysia: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   ecuador: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   japan: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   philippines: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   pakistan: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   luxembourg: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   "saudi-arabia": {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   indonesia: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   thailand: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   mexico: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   finland: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   panama: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   peru: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   greece: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   serbia: {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
+   "south-africa": {
+      cases: [],
+      predicted: 0,
+      graph_range: {
+         y1: [0, 0],
+         y2: [0, 0],
+      },
+   },
 };
