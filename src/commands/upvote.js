@@ -11,7 +11,7 @@ module.exports = class {
             .setColor(message.guild.me.displayHexColor)
             .setTitle(`You can upvote us here:`)
             .setDescription(
-               `**⠀**\nDiscord Bots List: **[HERE](https://discordbotlist.com/bots/691330203036811335)**\nBots on Discord: **[HERE](https://bots.ondiscord.xyz/bots/691330203036811335)** *(review only)*\n**⠀**\n**Thank you!**`
+               `**⠀**\nDiscord Bots List: **[HERE](https://discordbotlist.com/bots/691330203036811335)**\nBots on Discord: **[HERE](https://bots.ondiscord.xyz/bots/691330203036811335)** *(review only)*\nDivine Discord Bots: **[HERE](https://divinediscordbots.com/bot/691330203036811335)**\nbots.gg: **[HERE](https://discord.bots.gg/bots/691330203036811335)**\n**⠀**\n**Thank you!**`
             )
       );
    }
