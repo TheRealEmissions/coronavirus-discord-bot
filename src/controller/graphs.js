@@ -20,7 +20,7 @@ function calculateGrowths(head, country) {
       }
       return resolve({
          growths: growths,
-         newcases: newcases
+         newcases: newcases,
       });
    });
 }
@@ -39,7 +39,7 @@ function generateGraph(head, country) {
                y: [...newcases],
                type: "bar",
                name: "Daily Cases of COVID-19",
-               xaxis: "x"
+               xaxis: "x",
             },
             {
                x: xaxis,
@@ -47,8 +47,8 @@ function generateGraph(head, country) {
                type: "scatter",
                name: "Daily Growth of COVID-19",
                yaxis: "y2",
-               xaxis: "x"
-            }
+               xaxis: "x",
+            },
          ],
          options: {
             filename: `${new Date().getTime()}-${country}`,
@@ -56,12 +56,12 @@ function generateGraph(head, country) {
             layout: {
                title: "COVID-19",
                xaxis: {
-                  title: "Days (arbitrary)"
+                  title: "Days (arbitrary)",
                },
                yaxis: {
                   title: "Cases of COVID-19",
                   autorange: false,
-                  range: head.covid[country].graph_range.y1
+                  range: head.covid[country].graph_range.y1,
                },
                yaxis2: {
                   title: "Growth of COVID-19",
@@ -69,10 +69,10 @@ function generateGraph(head, country) {
                   side: "right",
                   overlaying: "y",
                   autorange: false,
-                  range: head.covid[country].graph_range.y2
-               }
-            }
-         }
+                  range: head.covid[country].graph_range.y2,
+               },
+            },
+         },
       };
       let graph_url = await new Promise((resolve, reject) => {
          head.modules.plotly.plot(graph.data, graph.options, (err, msg) => {
@@ -89,7 +89,7 @@ function init(head, client) {
       for (let region of Object.keys(head.covid)) {
          head.models.graphs.findOne(
             {
-               region: region
+               region: region,
             },
             async (err, db) => {
                if (err) return reject(err);
@@ -98,9 +98,9 @@ function init(head, client) {
                   let newdb = new head.models.graphs({
                      region: region,
                      url: url,
-                     update_timestamp: new Date()
+                     update_timestamp: new Date(),
                   });
-                  newdb.save(err => {
+                  newdb.save((err) => {
                      if (err) return reject(err);
                      else return;
                   });
@@ -112,16 +112,19 @@ function init(head, client) {
                      86400000 ||
                   db.url == "none"
                ) {
-                  head.modules.plotly.deletePlot(
-                     `${new Date(db.update_timestamp).getTime()}-${region}`,
-                     (err, plot) => {
-                        if (err) return head.error(err);
-                     }
-                  );
+                  await new Promise((resolve, reject) => {
+                     head.modules.plotly.deletePlot(
+                        `${new Date(db.update_timestamp).getTime()}-${region}`,
+                        (err, plot) => {
+                           if (err) return reject(err);
+                           return resolve();
+                        }
+                     );
+                  }).catch((err) => head.error(err));
                   const url = await generateGraph(head, region);
                   db.url = url;
                   db.update_timestamp = new Date();
-                  db.save(err => {
+                  db.save((err) => {
                      if (err) return reject(err);
                      else return;
                   });
@@ -138,7 +141,7 @@ function initOther(head, client) {
    return new Promise((resolve, reject) => {
       head.models.graphs.findOne(
          {
-            region: "global"
+            region: "global",
          },
          async (err, db) => {
             if (err) return reject(err);
@@ -162,7 +165,7 @@ function initOther(head, client) {
                      y: head.covid.global.cases,
                      type: "bar",
                      name: "Total Cases",
-                     xaxis: "x"
+                     xaxis: "x",
                   },
                   {
                      x: xaxis,
@@ -170,7 +173,7 @@ function initOther(head, client) {
                      type: "bar",
                      name: "Total Deaths",
                      yaxis: "y2",
-                     xaxis: "x"
+                     xaxis: "x",
                   },
                   {
                      x: xaxis,
@@ -178,8 +181,8 @@ function initOther(head, client) {
                      type: "scatter",
                      name: "Total Recovered",
                      yaxis: "y3",
-                     xaxis: "x"
-                  }
+                     xaxis: "x",
+                  },
                ],
                options: {
                   filename: `${new Date().getTime()}-globalother`,
@@ -187,12 +190,12 @@ function initOther(head, client) {
                   layout: {
                      title: "COVID-19",
                      xaxis: {
-                        title: "Days (arbitrary)"
+                        title: "Days (arbitrary)",
                      },
                      yaxis: {
                         title: "Total Cases",
                         autorange: false,
-                        range: [0, 500000]
+                        range: [0, 500000],
                      },
                      yaxis2: {
                         title: "Total Deaths",
@@ -200,7 +203,7 @@ function initOther(head, client) {
                         side: "right",
                         overlaying: "y",
                         autorange: false,
-                        range: [0, 50000]
+                        range: [0, 50000],
                      },
                      yaxis3: {
                         title: "Total Recoveries",
@@ -210,10 +213,10 @@ function initOther(head, client) {
                         position: 0.15,
                         overlaying: "y",
                         autorange: false,
-                        range: [0, 500000]
-                     }
-                  }
-               }
+                        range: [0, 500000],
+                     },
+                  },
+               },
             };
             let graph_url = await new Promise((resolve, reject) => {
                head.modules.plotly.plot(
@@ -226,7 +229,7 @@ function initOther(head, client) {
                );
             });
             db.other_url = graph_url.url;
-            db.save(err => {
+            db.save((err) => {
                if (err) return reject(err);
                else return resolve();
             });
@@ -241,11 +244,11 @@ module.exports = (head, client) => {
       console.time("graphs");
       await Promise.all([
          init(head, client).catch(reject),
-         initOther(head, client).catch(reject)
+         initOther(head, client).catch(reject),
       ]);
       setInterval(() => {
-         init(head, client).catch(err => reject(err));
-         initOther(head, client).catch(err => reject(err));
+         init(head, client).catch((err) => reject(err));
+         initOther(head, client).catch((err) => reject(err));
       }, 3600000);
       console.timeEnd("graphs");
       return resolve();

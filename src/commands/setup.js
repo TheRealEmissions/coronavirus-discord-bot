@@ -10,9 +10,9 @@ module.exports = class {
             data: [
                {
                   emoji: "🇦",
-                  country: "global"
-               }
-            ]
+                  country: "global",
+               },
+            ],
          },
          {
             continent: "europe",
@@ -20,104 +20,222 @@ module.exports = class {
             data: [
                {
                   emoji: "🇦",
-                  country: "uk"
+                  country: "uk",
                },
                {
                   emoji: "🇧",
-                  country: "italy"
+                  country: "italy",
                },
                {
                   emoji: "🇨",
-                  country: "spain"
+                  country: "spain",
                },
                {
                   emoji: "🇩",
-                  country: "germany"
+                  country: "germany",
                },
                {
                   emoji: "🇪",
-                  country: "france"
+                  country: "france",
                },
                {
                   emoji: "🇫",
-                  country: "switzerland"
+                  country: "switzerland",
                },
                {
                   emoji: "🇬",
-                  country: "netherlands"
+                  country: "netherlands",
                },
                {
                   emoji: "🇭",
-                  country: "austria"
+                  country: "austria",
                },
                {
                   emoji: "🇮",
-                  country: "belgium"
+                  country: "belgium",
                },
                {
                   emoji: "🇯",
-                  country: "portugal"
+                  country: "portugal",
                },
                {
                   emoji: "🇰",
-                  country: "norway"
-               }
-            ]
+                  country: "norway",
+               },
+               {
+                  emoji: "🇱",
+                  country: "sweden",
+               },
+            ],
          },
          {
-            continent: "america",
+            continent: "europe (2)",
             emoji: "🇨",
             data: [
                {
                   emoji: "🇦",
-                  country: "us"
+                  country: "ireland",
                },
                {
                   emoji: "🇧",
-                  country: "canada"
+                  country: "czech-republic",
                },
                {
                   emoji: "🇨",
-                  country: "brazil"
-               }
-            ]
+                  country: "denmark",
+               },
+               {
+                  emoji: "🇩",
+                  country: "poland",
+               },
+               {
+                  emoji: "🇪",
+                  country: "romania",
+               },
+               {
+                  emoji: "🇫",
+                  country: "luxembourg",
+               },
+               {
+                  emoji: "🇬",
+                  country: "finland",
+               },
+               {
+                  emoji: "🇭",
+                  country: "greece",
+               },
+               {
+                  emoji: "🇮",
+                  country: "serbia",
+               },
+            ],
          },
          {
-            continent: "asia",
+            continent: "america",
             emoji: "🇩",
             data: [
                {
                   emoji: "🇦",
-                  country: "china"
+                  country: "us",
                },
                {
                   emoji: "🇧",
-                  country: "south-korea"
+                  country: "canada",
                },
                {
                   emoji: "🇨",
-                  country: "iran"
+                  country: "brazil",
                },
                {
                   emoji: "🇩",
-                  country: "turkey"
+                  country: "chile",
                },
                {
                   emoji: "🇪",
-                  country: "israel"
-               }
-            ]
+                  country: "ecuador",
+               },
+               {
+                  emoji: "🇫",
+                  country: "mexico",
+               },
+               {
+                  emoji: "🇬",
+                  country: "panama",
+               },
+               {
+                  emoji: "🇭",
+                  country: "peru",
+               },
+            ],
          },
          {
-            continent: "oceania",
+            continent: "asia",
             emoji: "🇪",
             data: [
                {
                   emoji: "🇦",
-                  country: "australia"
-               }
-            ]
-         }
+                  country: "china",
+               },
+               {
+                  emoji: "🇧",
+                  country: "south-korea",
+               },
+               {
+                  emoji: "🇨",
+                  country: "iran",
+               },
+               {
+                  emoji: "🇩",
+                  country: "turkey",
+               },
+               {
+                  emoji: "🇪",
+                  country: "israel",
+               },
+               {
+                  emoji: "🇫",
+                  country: "russia",
+               },
+               {
+                  emoji: "🇬",
+                  country: "india",
+               },
+               {
+                  emoji: "🇭",
+                  country: "malaysia",
+               },
+               {
+                  emoji: "🇮",
+                  country: "japan",
+               },
+               {
+                  emoji: "🇯",
+                  country: "philippines",
+               },
+               {
+                  emoji: "🇰",
+                  country: "pakistan",
+               },
+               {
+                  emoji: "🇱",
+                  country: "saudi-arabia",
+               },
+            ],
+         },
+         {
+            continent: "asia (2)",
+            emoji: "🇫",
+            data: [
+               {
+                  emoji: "🇦",
+                  country: "indonesia",
+               },
+               {
+                  emoji: "🇧",
+                  country: "thailand",
+               },
+            ],
+         },
+         {
+            continent: "oceania",
+            emoji: "🇬",
+            data: [
+               {
+                  emoji: "🇦",
+                  country: "australia",
+               },
+            ],
+         },
+         {
+            continent: "africa",
+            emoji: "🇭",
+            data: [
+               {
+                  emoji: "🇦",
+                  country: "south-africa",
+               },
+            ],
+         },
       ];
    }
 
@@ -125,16 +243,16 @@ module.exports = class {
       return new Promise((resolve, reject) => {
          head.models.voice_channels.findOne(
             {
-               guild_id: message.guild.id
+               guild_id: message.guild.id,
             },
             async (err, db) => {
                if (err) return reject(err);
                if (!db) {
                   await new Promise((resolve, reject) => {
                      let newdb = new head.models.voice_channels({
-                        guild_id: message.guild.id
+                        guild_id: message.guild.id,
                      });
-                     newdb.save(err => {
+                     newdb.save((err) => {
                         if (err) return reject(err);
                         else return resolve();
                      });
@@ -167,12 +285,12 @@ module.exports = class {
             let obj = {
                name: `${o.emoji} **${o.continent
                   .split("-")
-                  .map(s => `${s.charAt(0).toUpperCase()}${s.slice(1)}`)
+                  .map((s) => `${s.charAt(0).toUpperCase()}${s.slice(1)}`)
                   .join(` `)}**`,
                value: "",
-               inline: true
+               inline: true,
             };
-            for (let x of this.emojis.find(x => x == o).data) {
+            for (let x of this.emojis.find((x) => x == o).data) {
                obj.value = obj.value.concat(
                   `${
                      x.country.length == 2
@@ -180,7 +298,8 @@ module.exports = class {
                         : x.country
                              .split("-")
                              .map(
-                                s => `${s.charAt(0).toUpperCase()}${s.slice(1)}`
+                                (s) =>
+                                   `${s.charAt(0).toUpperCase()}${s.slice(1)}`
                              )
                              .join(` `)
                   }: ${
@@ -206,8 +325,8 @@ module.exports = class {
          if (data.msg != null && !isInCycle) m.edit({ embed: embed });
          if (
             typeof m.reactions == "undefined" ||
-            !m.reactions.cache.some(x =>
-               this.emojis.map(e => e.emoji).includes(x.emoji)
+            !m.reactions.cache.some((x) =>
+               this.emojis.map((e) => e.emoji).includes(x.emoji)
             )
          )
             for (let e of this.emojis) m.react(e.emoji).catch(reject);
@@ -216,9 +335,9 @@ module.exports = class {
             m,
             (r, u) =>
                (data.white_check_mark == true
-                  ? this.emojis.some(x => x.emoji == r.emoji.name) ||
+                  ? this.emojis.some((x) => x.emoji == r.emoji.name) ||
                     r.emoji.name == "✅"
-                  : this.emojis.some(x => x.emoji == r.emoji.name)) &&
+                  : this.emojis.some((x) => x.emoji == r.emoji.name)) &&
                u.id == message.author.id,
             {}
          );
@@ -231,8 +350,8 @@ module.exports = class {
                category:
                   r.emoji.name == "✅"
                      ? true
-                     : this.emojis.find(x => x.emoji == r.emoji.name),
-               msg: m
+                     : this.emojis.find((x) => x.emoji == r.emoji.name),
+               msg: m,
             });
          });
       });
@@ -245,7 +364,7 @@ module.exports = class {
          fields: [],
          timestamp: new Date(),
          description: embed_description,
-         color: message.guild.me.displayHexColor
+         color: message.guild.me.displayHexColor,
       };
       let on = true;
       setTimeout(() => {
@@ -257,12 +376,12 @@ module.exports = class {
             let obj = {
                name: `**${o.continent
                   .split("-")
-                  .map(s => `${s.charAt(0).toUpperCase()}${s.slice(1)}`)
+                  .map((s) => `${s.charAt(0).toUpperCase()}${s.slice(1)}`)
                   .join(` `)}**`,
                value: "",
-               inline: true
+               inline: true,
             };
-            for (let x of this.emojis.find(x => x == o).data) {
+            for (let x of this.emojis.find((x) => x == o).data) {
                obj.value = obj.value.concat(
                   `${
                      x.country.length == 2
@@ -270,7 +389,8 @@ module.exports = class {
                         : x.country
                              .split("-")
                              .map(
-                                s => `${s.charAt(0).toUpperCase()}${s.slice(1)}`
+                                (s) =>
+                                   `${s.charAt(0).toUpperCase()}${s.slice(1)}`
                              )
                              .join(` `)
                   }: ${
@@ -282,7 +402,7 @@ module.exports = class {
             continue;
          }
          msg.edit({
-            embed: embed
+            embed: embed,
          });
       }, 180000);
       this.finishSetup(head, client, message, channel);
@@ -293,7 +413,7 @@ module.exports = class {
                msg: msg,
                white_check_mark: false,
                channel: channel,
-               cycle: edited == 0 ? false : true
+               cycle: edited == 0 ? false : true,
             })
          ).category;
          edited++;
@@ -305,7 +425,7 @@ module.exports = class {
             msg: msg,
             white_check_mark: false,
             channel: channel,
-            category: category
+            category: category,
          });
          continue;
       }
@@ -314,12 +434,12 @@ module.exports = class {
    async finishSetup(head, client, message, channel) {
       head.models.guilds.findOne(
          {
-            guild_id: message.guild.id
+            guild_id: message.guild.id,
          },
          (err, db) => {
             if (err) return head.error(err);
             if (db.setup == false) db.setup = true;
-            db.save(err => {
+            db.save((err) => {
                if (err) return head.error(err);
             });
          }
@@ -340,7 +460,7 @@ module.exports = class {
                           : c
                                .split("-")
                                .map(
-                                  s =>
+                                  (s) =>
                                      `${s.charAt(0).toUpperCase()}${s.slice(1)}`
                                )
                                .join(` `)
@@ -350,27 +470,27 @@ module.exports = class {
             }`
          );
       }
-      head.functions.getLogChannel(head, client).then(logch => {
+      head.functions.getLogChannel(head, client).then((logch) => {
          let e = {
             color: message.guild.me.displayHexColor,
             title: `**Guild Successfully Setup:**`,
             description: `**⠀**\nGuild: ${message.guild.name} *(${message.guild.id})*\n**⠀**`,
             thumbnail: {
-               url: message.guild.iconURL()
+               url: message.guild.iconURL(),
             },
             timestamp: new Date(),
-            fields: []
+            fields: [],
          };
          for (let o of this.emojis) {
             let obj = {
                name: `**${o.continent
                   .split("-")
-                  .map(s => `${s.charAt(0).toUpperCase()}${s.slice(1)}`)
+                  .map((s) => `${s.charAt(0).toUpperCase()}${s.slice(1)}`)
                   .join(` `)}**`,
                value: "",
-               inline: true
+               inline: true,
             };
-            for (let x of this.emojis.find(x => x == o).data) {
+            for (let x of this.emojis.find((x) => x == o).data) {
                obj.value = obj.value.concat(
                   `**${
                      x.country.length == 2
@@ -378,7 +498,8 @@ module.exports = class {
                         : x.country
                              .split("-")
                              .map(
-                                s => `${s.charAt(0).toUpperCase()}${s.slice(1)}`
+                                (s) =>
+                                   `${s.charAt(0).toUpperCase()}${s.slice(1)}`
                              )
                              .join(` `)
                   }**: ${
@@ -406,13 +527,13 @@ module.exports = class {
          let embed = {
             title: "Edit your setup:",
             description: `**⠀**\nIf you are happy with this setup, please select :white_check_mark:\nIf you wish to edit any of your inputs, please select below with the corresponding reactions.\n**⠀**`,
-            fields: []
+            fields: [],
          };
          const categoryAndMsg = await this.getCategory(head, message, embed, {
             msg: m,
             white_check_mark: true,
-            channel: channel
-         }).catch(err => reject(err));
+            channel: channel,
+         }).catch((err) => reject(err));
          const category = categoryAndMsg.category;
          const msg = categoryAndMsg.msg;
          if (category == true) {
@@ -429,7 +550,7 @@ module.exports = class {
             msg: msg,
             white_check_mark: true,
             channel: channel,
-            category: category
+            category: category,
          }).catch(reject);
          if (vcChannel == true) {
             resolve();
@@ -440,7 +561,7 @@ module.exports = class {
          const ch = await this.getVC(head, message, vcChannel, {
             in_setup: true,
             channel: channel,
-            msg: msg
+            msg: msg,
          });
          channel[vcChannel] = ch;
          await this.setInVCDatabase(
@@ -458,7 +579,7 @@ module.exports = class {
       return new Promise((resolve, reject) => {
          head.models.voice_channels.findOne(
             {
-               guild_id: typeof guild_id == "string" ? guild_id : guild_id.id
+               guild_id: typeof guild_id == "string" ? guild_id : guild_id.id,
             },
             (err, db) => {
                if (err) return reject(err);
@@ -469,7 +590,7 @@ module.exports = class {
                      } in setup.js setInVCDatabase()`
                   );
                db[country] = channel;
-               db.save(err => {
+               db.save((err) => {
                   if (err) return reject(err);
                   else return resolve();
                });
@@ -488,7 +609,7 @@ module.exports = class {
                .setDescription(
                   `**⠀**\nWhat voice channel should I update ${country
                      .split("-")
-                     .map(s => `${s.charAt(0).toUpperCase()}${s.slice(1)}`)
+                     .map((s) => `${s.charAt(0).toUpperCase()}${s.slice(1)}`)
                      .join(
                         ` `
                      )} COVID-19 cases with?\n**⠀**\n**You can:**\n- Paste the ID of the channel\n- Type the name of the channel\n- React with :x: to disable this module`
@@ -496,7 +617,7 @@ module.exports = class {
          );
          let mc = new head.modules.Discord.MessageCollector(
             data.msg.channel,
-            m => m.author.id == message.author.id,
+            (m) => m.author.id == message.author.id,
             {}
          );
          let rc = new head.modules.Discord.ReactionCollector(
@@ -504,12 +625,12 @@ module.exports = class {
             (r, u) => r.emoji.name == "❌" && u.id == message.author.id,
             { max: 1 }
          );
-         mc.on("collect", async m => {
+         mc.on("collect", async (m) => {
             data.msg.reactions.removeAll();
             m.delete();
             let channel =
                m.guild.channels.cache.get(m.content) ||
-               m.guild.channels.cache.find(x => x.name == m.content);
+               m.guild.channels.cache.find((x) => x.name == m.content);
             if (!channel || channel.type !== "voice")
                return data.msg
                   .edit(`:x: This channel is not valid. Please try again.`)
@@ -548,7 +669,9 @@ module.exports = class {
                      ? o.country.toUpperCase()
                      : o.country
                           .split("-")
-                          .map(s => `${s.charAt(0).toUpperCase()}${s.slice(1)}`)
+                          .map(
+                             (s) => `${s.charAt(0).toUpperCase()}${s.slice(1)}`
+                          )
                           .join(` `)
                }**:`,
                value:
@@ -557,22 +680,22 @@ module.exports = class {
                      : `${data.channel[o.country].name}\n*${
                           data.channel[o.country].id
                        }*`,
-               inline: true
+               inline: true,
             });
          }
          data.msg.edit({ embed: embed }).catch(reject);
          if (data.white_check_mark == false) return resolve();
-         for (let e of this.emojis.find(x => x == data.category).data)
+         for (let e of this.emojis.find((x) => x == data.category).data)
             data.msg.react(e.emoji);
          if (data.white_check_mark == true) data.msg.react("✅");
          let collector = new head.modules.Discord.ReactionCollector(
             data.msg,
             (r, u) =>
                data.white_check_mark == true
-                  ? (data.category.data.some(x => x.emoji == r.emoji.name) ||
+                  ? (data.category.data.some((x) => x.emoji == r.emoji.name) ||
                        r.emoji.name == "✅") &&
                     u.id == message.author.id
-                  : data.category.data.some(x => x.emoji == r.emoji.name) &&
+                  : data.category.data.some((x) => x.emoji == r.emoji.name) &&
                     u.id == message.author.id,
             { max: 1 }
          );
@@ -581,7 +704,7 @@ module.exports = class {
             await data.msg.reactions.removeAll();
             if (r.emoji.name == "✅") return resolve(true);
             return resolve(
-               data.category.data.find(x => x.emoji == r.emoji.name).country
+               data.category.data.find((x) => x.emoji == r.emoji.name).country
             );
          });
       });
@@ -600,25 +723,25 @@ module.exports = class {
          await new Promise((resolve, reject) => {
             head.models.voice_channels.findOne(
                {
-                  guild_id: message.guild.id
+                  guild_id: message.guild.id,
                },
                (err, db) => {
                   if (err) return reject(err);
                   if (!db) {
                      let newdb = new head.models.voice_channels({
-                        guild_id: message.guild.id
+                        guild_id: message.guild.id,
                      });
-                     newdb.save(err => {
+                     newdb.save((err) => {
                         if (err) return reject(err);
                         else return resolve();
                      });
                   } else resolve();
                }
             );
-         }).catch(err => head.error(err));
+         }).catch((err) => head.error(err));
          head.models.guilds.findOne(
             {
-               guild_id: message.guild.id
+               guild_id: message.guild.id,
             },
             async (err, db) => {
                if (err) return head.error(err);
@@ -626,9 +749,9 @@ module.exports = class {
                   await new Promise((resolve, reject) => {
                      let newdb = new head.models.guilds({
                         guild_id: message.guild.id,
-                        setup: true
+                        setup: true,
                      });
-                     newdb.save(err => {
+                     newdb.save((err) => {
                         if (err) return reject(err);
                         else return resolve();
                      });
@@ -636,14 +759,14 @@ module.exports = class {
                   return;
                }
                db.setup = true;
-               db.save(err => {
+               db.save((err) => {
                   if (err) return head.error(err);
                });
             }
          );
       }
       // channel object
-      let channel = await this.getChannels(head, client, message).catch(err =>
+      let channel = await this.getChannels(head, client, message).catch((err) =>
          head.error(err)
       );
 

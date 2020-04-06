@@ -70,6 +70,7 @@ module.exports = class {
             );
          }
          let graph_url = await head.functions.getGraph(head, "global");
+         if (graph_url == "none") graph_url = null;
          let embed = {
             embed: {
                color: message.guild.me.displayHexColor,
@@ -100,7 +101,7 @@ module.exports = class {
                   },
                ],
                image: {
-                  url: `${graph_url}.png`,
+                  url: graph_url == null ? null : `${graph_url}.png`,
                },
             },
          };
@@ -173,6 +174,7 @@ module.exports = class {
             head,
             args[1].toLowerCase()
          );
+         if (graph_url == "none") graph_url = null;
          let embed = {
             embed: {
                color: message.guild.me.displayHexColor,
@@ -186,7 +188,7 @@ module.exports = class {
                           )
                           .join(` `)
                }`,
-               description: `**⠀**\n📊 **Average Growth:** \`${growth.toFixed(
+               description: `**⠀**\nUpvote me: [HERE](https://discordbotlist.com/bots/691330203036811335) [HERE](https://bots.ondiscord.xyz/bots/691330203036811335) [HERE](https://divinediscordbots.com/bot/691330203036811335) [HERE](https://discord.bots.gg/bots/691330203036811335)\n**⠀**\n📊 **Average Growth:** \`${growth.toFixed(
                   2
                )}\` or \`${(growth * 100).toFixed(
                   2
@@ -212,7 +214,7 @@ module.exports = class {
                   },
                ],
                image: {
-                  url: `${graph_url}.png`,
+                  url: graph_url == null ? null : `${graph_url}.png`,
                },
             },
          };
