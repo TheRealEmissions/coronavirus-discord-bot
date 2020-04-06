@@ -4,13 +4,16 @@ function getVCName(type) {
       case "global":
          str = "Global Cases: 0";
          break;
+      case "czech-republic":
+         str = "Czechia Cases: 0";
+         break;
       default:
          str = `${
             type.length == 2
                ? type.toUpperCase()
                : type
                     .split("-")
-                    .map(s => `${s.charAt(0).toUpperCase()}${s.slice(1)}`)
+                    .map((s) => `${s.charAt(0).toUpperCase()}${s.slice(1)}`)
                     .join(` `)
          } Cases: 0`;
          break;
@@ -38,7 +41,7 @@ async function updateVC(head, client) {
          if (isSetup === true) {
             head.models.voice_channels.findOne(
                {
-                  guild_id: guild.id
+                  guild_id: guild.id,
                },
                async (err, db) => {
                   if (err) return head.error(err);
@@ -62,12 +65,12 @@ async function updateVC(head, client) {
                               getVCName(channel).split(":")[0]
                            }: ${head.functions.addCommasToNo(amount)}`
                         )
-                           .then(c =>
+                           .then((c) =>
                               head.log(
                                  `Updated voice channel "${ch.name}" (${ch.id}) in Guild "${ch.guild.name}" (${ch.guild.id}) with "${c.name}"`
                               )
                            )
-                           .catch(err => {
+                           .catch((err) => {
                               head.error(
                                  `Cannot set channel name for channel ${channel} ${db[channel]} in Guild "${guild.name}" (${guild.id})\n${err}`
                               );
