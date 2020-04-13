@@ -15,8 +15,8 @@ module.exports = class {
          return message.channel.send(
             `You are currently on cooldown. You can only suggest once every five minutes!`
          );
-      let guild = client.guilds.cache.get("583261752775409684");
-      let channel = guild.channels.cache.get("691349561784139858");
+      let guild = client.guilds.cache.get("699319118439907449");
+      let channel = guild.channels.cache.get("699326342130434188");
       const opt_in = await new Promise(async (resolve, reject) => {
          let m = await message.channel.send(
             new head.modules.Discord.MessageEmbed()
